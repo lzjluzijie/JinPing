@@ -14,3 +14,12 @@ func NewComment(comment *Comment) (err error) {
 	_, err = x.Insert(comment)
 	return
 }
+
+func GetCommentsByTopic(topicID int64) (comments []Comment, err error) {
+	comments = []Comment{}
+	err = x.Where("ID = ?", topicID).Find(&comments)
+	if err != nil {
+		return
+	}
+	return
+}
