@@ -34,19 +34,3 @@ func NewComment(c *macaron.Context) {
 
 	c.JSON(200, comment)
 }
-
-func GetComments(c *macaron.Context) {
-	topicID, err := strconv.ParseInt(c.Query("topicID"), 10, 64)
-	if err != nil {
-		c.Error(500, err.Error())
-		return
-	}
-
-	comments, err := models.GetCommentsByTopic(topicID)
-	if err != nil {
-		c.Error(500, err.Error())
-		return
-	}
-
-	c.JSON(200, comments)
-}

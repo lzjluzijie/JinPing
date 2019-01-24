@@ -6,5 +6,7 @@ func RegisterRouters(m *macaron.Macaron) {
 	m.Group("/api", func() {
 		m.Post("/comment", NewComment)
 		m.Post("/user", NewUser)
+		m.Post("/topic", NewTopic)
+		m.Get("/topic/:topicID/comments", GetCommentsByTopic)
 	})
 }

@@ -11,7 +11,7 @@ func NewUser(c *macaron.Context) {
 	user := &models.User{
 		Name: name,
 	}
-	err := models.NewUser(user)
+	err := models.CreateUser(user)
 	if err != nil {
 		c.Error(500, err.Error())
 		return
