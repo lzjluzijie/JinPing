@@ -32,14 +32,10 @@ func NewTopic(c *macaron.Context) {
 	return
 }
 
-func GetCommentsByTopic(c *macaron.Context) {
-	topicID, err := strconv.ParseInt(c.Params("topicID"), 10, 64)
-	if err != nil {
-		c.Error(500, err.Error())
-		return
-	}
+func GetCommentsByURL(c *macaron.Context) {
+	url := c.Query("url")
 
-	comments, err := models.GetCommentsByTopic(topicID)
+	comments, err := models.GetCommentsByURL(url)
 	if err != nil {
 		c.Error(500, err.Error())
 		return

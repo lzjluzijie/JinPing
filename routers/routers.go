@@ -6,5 +6,7 @@ import (
 )
 
 func RegisterRouters(m *macaron.Macaron) {
+	m.Use(macaron.Static("public"))
+
 	api.RegisterRouters(m)
 }

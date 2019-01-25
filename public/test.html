@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min.js"
+        integrity="sha256-mpnrJ5DpEZZkwkE1ZgkEQQJW/46CSEh/STrZKOB/qoM=" crossorigin="anonymous"></script>
+<script>
+    var url = window.location.href;
+    axios.get('/api/comments', {
+        params: {
+            url: url,
+        }
+    })
+        .then(function (response) {
+            console.log(response)
+        })
+        .catch(function (error) {
+            console.log(error);
+        })
+</script>
+</body>
+</html>

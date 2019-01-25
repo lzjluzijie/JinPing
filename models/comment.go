@@ -1,6 +1,10 @@
 package models
 
-import "time"
+import (
+	"errors"
+	"fmt"
+	"time"
+)
 
 type Comment struct {
 	ID      int64 `xorm:"pk autoincr"`
@@ -16,9 +20,22 @@ func NewComment(comment *Comment) (err error) {
 	return
 }
 
-func GetCommentsByTopic(topicID int64) (comments []Comment, err error) {
+func GetCommentsByURL(url string) (comments []Comment, err error) {
+	topic := &Topic{
+		URL: url,
+	}
+
+	has, err := x.Get(topic)
+	if err != nil {
+		return
+	}
+	if !has {
+		err = errors.New(fmt.Sprintf("cannot find topic: %s", url))
+		return
+	}
+
 	comments = []Comment{}
-	err = x.Where("ID = ?", topicID).Find(&comments)
+	err = x.Where("TopicID = ?", topic.ID).Find(&comments)
 	if err != nil {
 		return
 	}
