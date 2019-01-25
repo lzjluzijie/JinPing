@@ -6,7 +6,7 @@ type Topic struct {
 	ID     int64 `xorm:"pk autoincr"`
 	UserID int64
 	Name   string
-	URL    string
+	URL    string `xorm:"unique"`
 
 	CreatedAt time.Time `xorm:"created"`
 }

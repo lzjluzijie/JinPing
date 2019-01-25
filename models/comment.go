@@ -1,8 +1,6 @@
 package models
 
 import (
-	"errors"
-	"fmt"
 	"time"
 )
 
@@ -30,12 +28,15 @@ func GetCommentsByURL(url string) (comments []Comment, err error) {
 		return
 	}
 	if !has {
-		err = errors.New(fmt.Sprintf("cannot find topic: %s", url))
+		err = CreateTopic(topic)
+		if err != nil {
+			return
+		}
 		return
 	}
 
 	comments = []Comment{}
-	err = x.Where("TopicID = ?", topic.ID).Find(&comments)
+	err = x.Where("topic_id = ?", topic.ID).Find(&comments)
 	if err != nil {
 		return
 	}
