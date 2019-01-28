@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+</head>
+<body>
+<form>
+    <input type="text" id="name">
+</form>
+<script src="https://cdn.jsdelivr.net/npm/axios@0.18.0/dist/axios.min.js"
+        integrity="sha256-mpnrJ5DpEZZkwkE1ZgkEQQJW/46CSEh/STrZKOB/qoM=" crossorigin="anonymous"></script>
+
+<script>
+    var name = document.getElementById("name").value;
+    axios.post('/api/user/register', {
+        name: name,
+    }).then(function (response) {
+        console.log(response)
+    })
+        .catch(function (error) {
+            console.log(error);
+        })
+</script>
+</body>
+</html>
